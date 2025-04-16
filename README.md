@@ -35,3 +35,15 @@ Enable country selection from a predefined country list
 ### Notes:
 - Your submission will be evaluated based on code quality, adherence to best practices, and completeness of the task
 - Thank you and good luck!
+
+### How to Run:
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan migrate --env=testing
+php artisan serve
+
+### How to Run Test:
+php artisan test
