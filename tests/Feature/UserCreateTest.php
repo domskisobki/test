@@ -17,9 +17,10 @@ class UserCreateTest extends TestCase
     public function it_creates_a_user()
     {
         Storage::fake('avatars');
-        $selfie = $this->json('POST','/avatars',[
-            'selfie' => UploadedFile::fake()->image('avatars.jpg')
-        ]);
+
+        $selfie = UploadedFile::fake()->image('avatars.jpg');
+
+        Storage::disk('avatars')->putFile('/', $selfie);
 
         $data = [
             'name' => 'John',

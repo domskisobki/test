@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;
 
 class UserUpdateTest extends TestCase
@@ -13,6 +15,13 @@ class UserUpdateTest extends TestCase
     /** @test */
     public function it_updates_a_user()
     {
+
+        Storage::fake('avatars');
+
+        $selfie = UploadedFile::fake()->image('avatars.jpg');
+
+        Storage::disk('avatars')->putFile('/', $selfie);
+
         $user = User::factory()->create();
 
         $data = [
